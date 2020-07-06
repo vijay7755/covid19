@@ -1,0 +1,65 @@
+@import "./../../../../Styles/bootstrap-custom.scss";
+
+.card {
+    box-shadow: 1px 2px 5px 2px #888888;
+}
+.card-dark, .card-header-dark, .card-body-dark {
+    box-shadow: none;
+    border-color: $covid-secondary-lighter;
+}
+
+.card-header>h3, p {
+    margin-bottom: 0;
+}
+.card-header>h3 {
+    color: $covid-primary;
+}
+.card-header-dark>h3 {
+    color: white;
+}
+.card-header-dark {
+    background-color: $covid-secondary-darker;
+    color: white;
+}
+.card-body {
+    padding: 5px;
+    height: 93vh;
+    overflow-y: scroll;
+    scrollbar-width: none;
+}
+
+@media only screen and (max-width: 576px) {
+    .card-body {
+        padding: 5px;
+        height: 50vh;
+        overflow-y: scroll;
+        scrollbar-width: none;
+    } 
+} 
+
+.card-body-dark {
+background-color: $covid-secondary;
+color: white;
+}
+.card-body::-webkit-scrollbar {
+    width: 6px;
+    background-color: #F5F5F5;
+}
+.card-body::-webkit-scrollbar-thumb {
+    background-color: #5a5a5a;
+    border-radius: 10px;
+}
+.card-body::-webkit-scrollbar-track
+{
+	border-radius: 10px;
+}
+.card-body-dark::-webkit-scrollbar-track
+{
+    // -webkit-box-shadow: inset 0 0 6px rgba(0,0,0);
+    background-color: #02012e;
+	border-radius: 0px;
+}
+.list-group-item {
+    border: none;
+    padding: 5px 0px;
+}

@@ -1,0 +1,31 @@
+<div class="container">
+    <div class="d-flex justify-content-center">
+        <form #authForm="ngForm" (ngSubmit)="onSubmit(authForm)" class="p-2 p-md-5 m-2 m-md-5">
+            <div class="form-group">
+                <mat-form-field appearance="fill" class="form-field">
+                    <mat-label>Enter your email</mat-label>
+                    <input matInput placeholder="user@email.com" [formControl]="email" ngModel name="email" required>
+                    <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
+                </mat-form-field>
+            </div>
+            <div class="form-group">
+                <mat-form-field appearance="fill" class="form-field">
+                    <mat-label>Enter your password</mat-label>
+                    <input matInput [type]="hide ? 'password' : 'text'" ngModel name="password" required>
+                    <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+                        [attr.aria-pressed]="hide">
+                        <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                    </button>
+                </mat-form-field>
+            </div>
+            <div class="buttons">
+                <button mat-raised-button color="primary" type="submit"
+                 [disabled]="!authForm.valid || email.invalid">
+                    {{isLoginMode? 'Log in' : 'sign up'}}</button>
+                &nbsp;&nbsp;&nbsp;
+                <button mat-raised-button color="primary" type="button" (click)="switchMode()">
+                    {{isLoginMode? 'switch to Sign up' : 'switch to Log in'}}</button>
+            </div>
+        </form>
+    </div>
+</div>

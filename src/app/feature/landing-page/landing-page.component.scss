@@ -1,0 +1,12 @@
+.container{
+  height: 92vh;
+}
+.form-field {
+  width: 35rem;
+}
+
+@media only screen  and (max-width: 560px) {
+  .form-field {
+    width: 20rem;
+  }
+}

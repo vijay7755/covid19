@@ -1,0 +1,122 @@
+@import '~@angular/material/theming';
+
+@include mat-core();
+
+$covid-primary: (
+    50 : #e5e3ed,
+    100 : #bfb9d1,
+    200 : #948bb3,
+    300 : #695c94,
+    400 : #49397d,
+    500 : #291666,
+    600 : #24135e,
+    700 : #1f1053,
+    800 : #190c49,
+    900 : #0f0638,
+    A100 : #816fff,
+    A200 : #553cff,
+    A400 : #2809ff,
+    A700 : #1e00ef,
+    contrast: (
+        50 : #000000,
+        100 : #000000,
+        200 : #000000,
+        300 : #ffffff,
+        400 : #ffffff,
+        500 : #ffffff,
+        600 : #ffffff,
+        700 : #ffffff,
+        800 : #ffffff,
+        900 : #ffffff,
+        A100 : #000000,
+        A200 : #ffffff,
+        A400 : #ffffff,
+        A700 : #ffffff,
+    )
+);
+
+
+$primary: mat-palette($covid-primary);
+$accent: mat-palette($mat-pink, A200, A100, A400);
+$warn: mat-palette($mat-red);
+$theme: mat-light-theme($primary, $accent, $warn);
+
+@include angular-material-theme($theme);
+
+// dark theme
+
+$covid-darker-primary: (
+    50 : #e2e4e7,
+    100 : #b7bdc2,
+    200 : #879199,
+    300 : #576470,
+    400 : #334352,
+    500 : #0f2233,
+    600 : #0d1e2e,
+    700 : #0b1927,
+    800 : #081420,
+    900 : #040c14,
+    A100 : #5599ff,
+    A200 : #227aff,
+    A400 : #005fee,
+    A700 : #0055d4,
+    contrast: (
+        50 : #000000,
+        100 : #000000,
+        200 : #000000,
+        300 : #ffffff,
+        400 : #ffffff,
+        500 : #ffffff,
+        600 : #ffffff,
+        700 : #ffffff,
+        800 : #ffffff,
+        900 : #ffffff,
+        A100 : #000000,
+        A200 : #ffffff,
+        A400 : #ffffff,
+        A700 : #ffffff,
+    )
+);
+
+$covid-darker-accent: (
+    50 : #e0e4ea,
+    100 : #b3bcc9,
+    200 : #808fa6,
+    300 : #4d6282,
+    400 : #264067,
+    500 : #001e4c,
+    600 : #001a45,
+    700 : #00163c,
+    800 : #001233,
+    900 : #000a24,
+    A100 : #5f75ff,
+    A200 : #2c49ff,
+    A400 : #0022f8,
+    A700 : #001edf,
+    contrast: (
+        50 : #000000,
+        100 : #000000,
+        200 : #000000,
+        300 : #ffffff,
+        400 : #ffffff,
+        500 : #ffffff,
+        600 : #ffffff,
+        700 : #ffffff,
+        800 : #ffffff,
+        900 : #ffffff,
+        A100 : #ffffff,
+        A200 : #ffffff,
+        A400 : #ffffff,
+        A700 : #ffffff,
+    )
+);
+
+.dark-theme {
+    color: $light-primary-text;
+    $dark-primary: mat-palette($covid-darker-primary);
+    $dark-accent: mat-palette($covid-darker-accent, A400, A100, A700);
+    $dark-warn: mat-palette($mat-red);
+    $dark-theme: mat-dark-theme($dark-primary, $dark-accent, $dark-warn);
+  
+    @include angular-material-theme($dark-theme);
+  }

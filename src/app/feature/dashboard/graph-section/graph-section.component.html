@@ -1,0 +1,88 @@
+<!-- List section -->
+<section class="list-container">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 cases-list-container">
+                <div class="card mb-2" [ngClass]="{'card-dark' : isDarkTheme | async }">
+                    <div class="card-header" [ngClass]="{'card-header-dark' : isDarkTheme | async }">
+                        <h3 class="text-danger"><strong>Total Deaths</strong></h3>
+                        <p><strong>{{GlobalDeath | digitFormatter}}</strong></p>
+                    </div>
+                    <div class="card-body" [ngClass]="{'card-body-dark' : isDarkTheme | async }">
+                        <ul class="list-group" *ngFor="let datum of countryData | sort:'TotalDeaths' ">
+                            <li class="list-group-item" [ngClass]="{'card-body-dark' : isDarkTheme | async }">
+                                <div class="d-flex">
+                                    <div class="mr-auto p-1">
+                                        <span style="font-size: x-small;">{{datum.Country}}</span>
+                                    </div>
+                                    <div class="p-1">
+                                        <span>{{datum.TotalDeaths | digitFormatter}}</span>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 cases-list-container">
+                <div class="card mb-2" [ngClass]="{'card-dark' : isDarkTheme | async }">
+                    <div class="card-header" [ngClass]="{'card-header-dark' : isDarkTheme | async }">
+                        <h3 class="text-success"><strong>Total Recovered</strong></h3>
+                        <p><strong>{{GlobalRecovered | digitFormatter}}</strong></p>
+                    </div>
+                    <div class="card-body" [ngClass]="{'card-body-dark' : isDarkTheme | async }">
+                        <ul class="list-group" *ngFor="let datum of countryData | sort:'TotalRecovered' ">
+                            <li class="list-group-item" [ngClass]="{'card-body-dark' : isDarkTheme | async }">
+                                <div class="d-flex">
+                                    <div class="mr-auto p-1">
+                                        <span style="font-size: x-small;">{{datum.Country}}</span>
+                                    </div>
+                                    <div class="p-1">
+                                        <span>{{datum.TotalRecovered | digitFormatter}}</span>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- End of list section -->
+
+<!-- Graph Section -->
+<section class="graph">
+    <div class="container">
+        <div class="row mt-3">
+            <div class="col-12 p-0">
+                <div style="width:100%; height: auto">
+                    <canvas id="canvas" style="width:100%; height: 330px;"></canvas>
+                </div>
+            </div>
+        </div>
+        <div class="row mt-3">
+            <div class="col-12">
+                <div class="btn-group btn-block graph-tabs">
+                    <div class="droplet">
+                        <button type="button" class="btn tab dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
+                            aria-expanded="false">
+                             Select Country 
+                        </button>
+                        <div class="dropdown-menu dropdown-container" aria-labelledby="dropdownMenuButton">
+                            <div *ngFor="let list of countryLists">
+                                <button class="dropdown-item xxx" type="button"
+                                        (click)="countrySelector(list)">{{list.country}}</button>
+                            </div>
+                        </div>
+                    </div>
+                    <button type="button" class="btn" [ngClass]="getGraphTabCss('actual')"
+                        (click)="ChartParamsAssigner('actual')">Actual</button>
+                    <button type="button" class="btn" [ngClass]="getGraphTabCss('daily')"
+                        (click)="ChartParamsAssigner('daily')">Daily</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- End of Graph section -->

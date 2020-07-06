@@ -1,0 +1,14 @@
+<div class="btn-group btn-block mb-2">
+    <button type="button" class="btn" [ngClass]="active === 'TotalConfirmed' ? 'active-tab' : 'tab'"
+     (click)="onClick('TotalConfirmed')">TOTAL</button>
+    <button type="button" class="btn" [ngClass]="active === 'TotalRecovered' ? 'active-tab' : 'tab'"
+     (click)="onClick('TotalRecovered')">RECOVERED</button>
+    <button type="button" class="btn" [ngClass]="active === 'TotalDeaths' ? 'active-tab' : 'tab'"
+     (click)="onClick('TotalDeaths')">DEATHS</button>
+</div>
+<div id="chartdiv" style="width: 100%; height: 350px"></div>
+<div class="p-3">
+   <h1> {{active}} cases: </h1>
+   <p class="display-4 display-font"><strong>{{count | digitFormatter}}</strong></p>
+</div>
+

@@ -1,0 +1,27 @@
+@import "./../../../../Styles/bootstrap-custom.scss";
+
+
+.tab {
+    background-color: white;
+    color: $covid-primary;
+    border-color: $covid-primary;
+}
+.tab-dark {
+    background-color: $covid-secondary-lighter;
+    color: $covid-primary;
+    border-color: $covid-secondary;
+}
+.active-tab {
+    background-color: $covid-primary-lighter; 
+    color: white;
+}
+.active-tab-dark {
+    background-color: $covid-secondary-lighter; 
+    color: white;
+}
+
+@media only screen and (max-width: 576px) {
+.display-font {
+    font-size: 3rem;
+}
+}

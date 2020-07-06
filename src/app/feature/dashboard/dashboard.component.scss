@@ -1,0 +1,21 @@
+@import "./../../../Styles/bootstrap-custom.scss";
+
+// .main-area {
+//     padding: 15px 0px 0px;
+// }
+.left-area {
+    padding: 0px 10px;
+}
+.center-area {
+    padding: 0px 5px;
+}
+.right-area {
+    padding: 0px 5px 0px;
+}
+.footer {
+    background: linear-gradient(rgb(216, 216, 218), rgb(230, 230, 231), rgb(222, 222, 223));
+}
+.footer-dark {
+    background: $covid-secondary;
+    border-top: 1px solid $covid-secondary-lighter;
+}

@@ -1,0 +1,20 @@
+<div class="card mb-4" [ngClass]="{'card-dark' : isDarkTheme | async }">
+  <div class="card-header" [ngClass]="{'card-header-dark' : isDarkTheme | async }">
+    <h3 ><strong>Total Confrimed</strong></h3>
+    <p><strong>{{totalConfrimed | digitFormatter}}</strong></p>
+  </div>
+  <div class="card-body" [ngClass]="{'card-body-dark' : isDarkTheme | async }">
+    <ul class="list-group" *ngFor="let datum of countryData | sort:'TotalConfirmed' ">
+      <li class="list-group-item" [ngClass]="{'card-body-dark' : isDarkTheme | async }">
+        <div class="d-flex">
+          <div class="mr-auto p-1">
+            <span style="font-size: x-small;">{{datum.Country}}</span>
+          </div>
+          <div class="p-1">
+            <span>{{datum.TotalConfirmed | digitFormatter}}</span>
+          </div>
+        </div>
+      </li>
+    </ul>
+  </div>
+</div>

@@ -1,0 +1,21 @@
+$theme-colors: (
+    "primary": #291666
+);
+@import "./../../node_modules/bootstrap/scss/bootstrap.scss";
+
+html,
+body {
+    height: 100%;
+}
+body {
+    margin: 0;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+$covid-primary-lighter: #695c94;
+$covid-primary: #291666;
+$covid-primary-darker: #0f0638;
+
+$covid-secondary-lighter: #334352;
+$covid-secondary: #0f2233;
+$covid-secondary-darker: #0f0638;

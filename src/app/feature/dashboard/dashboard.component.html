@@ -1,0 +1,27 @@
+<div class="container-fluid">
+    <div class="row py-3">
+        <div class="col-lg-2 left-area">
+            <app-total-confrimed></app-total-confrimed>
+        </div>
+        <div class="col-lg-5 center-area">
+            <app-world-map-chart></app-world-map-chart>
+        </div>
+        <div class="col-lg-5 right-area">
+            <app-graph-section></app-graph-section>
+        </div>
+    </div>
+    <div class="row footer mt-1" [ngClass]="{'footer-dark' : isDarkTheme | async }">
+        <div class="col-md-6">
+            <div class="p-2">
+                <p class="updated-time mb-1">Last Updated at:</p>
+                <p class="updated-time mb-1">{{currentDateTime}}</p>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <p class="float-right p-2 mt-3">
+                Data Source: <strong><a href="https://covid-19-apis.postman.com/" target="_blank">WHO</a></strong>
+                National Health Commission of the People's
+            </p>
+        </div>
+    </div>
+</div>
