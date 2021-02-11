@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Observable } from 'rxjs';
 import { ThemeService } from './core/theme.service';
-import { FormControl, Validators } from '@angular/forms';
+// import { FormControl, Validators } from '@angular/forms';
 import { Router, RouterEvent, NavigationStart, NavigationEnd, NavigationCancel, NavigationError } from '@angular/router';
 
 @Component({

@@ -4,7 +4,11 @@
             <app-total-confrimed></app-total-confrimed>
         </div>
         <div class="col-lg-5 center-area">
-            <app-world-map-chart></app-world-map-chart>
+            <app-world-map-chart [myNewNumber]="counter" [myName]="user"></app-world-map-chart>
+            <hr>
+            <button class="btn btn-primary" (click)="increment()">addition</button> &nbsp;&nbsp;
+            <button class="btn btn-secondary" (click)="decrement()">subtractoin</button> &nbsp;&nbsp;
+            <a (click)="updateName()" class="btn btn-outline-primary"><span class="btn-update">Update</span></a>
         </div>
         <div class="col-lg-5 right-area">
             <app-graph-section></app-graph-section>
