@@ -1,5 +1,5 @@
 import { DashboardService } from './../dashboard.service';
-import { Component, OnInit, NgZone, Input, OnChanges, SimpleChanges, SimpleChange, DoCheck, AfterViewInit, AfterContentInit, AfterContentChecked } from '@angular/core';
+import { Component, OnInit, NgZone  } from '@angular/core';
 import { Covid19Data } from 'src/app/core/covid19Data.model';
 
 import * as am4core from "@amcharts/amcharts4/core";
@@ -9,7 +9,6 @@ import am4themes_material from "@amcharts/amcharts4/themes/material";
 import am4themes_animated from "@amcharts/amcharts4/themes/animated";
 import { Observable } from 'rxjs';
 import { ThemeService } from 'src/app/core/theme.service';
-import * as rxjs from 'rxjs';
 
 /* Chart code */
 // Themes begin
@@ -17,7 +16,7 @@ am4core.useTheme(am4themes_material);
 am4core.useTheme(am4themes_animated);
 // Themes end
 
-export interface chartData {
+export interface chartData  {
   id: string,
   name: string,
   value: number,
@@ -29,7 +28,7 @@ export interface chartData {
   templateUrl: './world-map-chart.component.html',
   styleUrls: ['./world-map-chart.component.scss']
 })
-export class WorldMapChartComponent implements OnInit, OnChanges, DoCheck {
+export class WorldMapChartComponent implements OnInit {
   isDarkTheme: Observable<boolean>;
   active = 'TotalConfirmed';
   Records: any;
@@ -41,31 +40,9 @@ export class WorldMapChartComponent implements OnInit, OnChanges, DoCheck {
   private TotalRecovered: chartData[] = [];
   private activeChartData: chartData[] = [];
 
-  private myNumber: number;
-
-  // @Input() 
-  // set myNewNumber(number: number) {
-  //   this.myNumber = number;
-  //   console.log("setter: ",this.myNumber)
-  // }
-  // get myNewNumber() {
-  //   return this.myNumber;
-  // }
-
-  @Input() myNewNumber: number;
-  @Input() myName: any;
-
-  ngOnChanges(changes: SimpleChanges) {
-    const newChangedNumber: SimpleChange = changes.myNewNumber;
-    console.log("in on changes ", changes);
-    console.log("previous value: ", newChangedNumber.previousValue);
-    console.log("current value: ", newChangedNumber.currentValue)
-  }
-
   constructor(private dashboardService: DashboardService, private zone: NgZone, private themeService: ThemeService) { }
 
   ngOnInit(): void {
-    console.log("on init")
     this.isDarkTheme = this.themeService.isDarkTheme;
     this.dashboardService.refreshPage.subscribe(() => {
       this.getValues();
@@ -73,16 +50,12 @@ export class WorldMapChartComponent implements OnInit, OnChanges, DoCheck {
     this.getValues();
   }
 
-  ngDoCheck() {
-    console.log("on do check", this.myName)
-  }
-
   private getValues() {
     this.covidData = this.dashboardService.getCovid19Summary();
     this.count = this.covidData.Global[this.active];
 
     this.covidData.Countries.forEach(element => {
-      let chartDataOBJ: chartData = { id: '', name: '', value: 0, color: '' };
+      let chartDataOBJ:chartData = {  id: '', name: '', value: 0, color: ''};
       chartDataOBJ.id = element.CountryCode;
       chartDataOBJ.name = element.Country;
       chartDataOBJ.value = element.TotalConfirmed;
@@ -90,7 +63,7 @@ export class WorldMapChartComponent implements OnInit, OnChanges, DoCheck {
       this.TotalConfirmed.push(chartDataOBJ);
     });
     this.covidData.Countries.forEach(element => {
-      let chartDataOBJ: chartData = { id: '', name: '', value: 0, color: '' };
+      let chartDataOBJ:chartData = {  id: '', name: '', value: 0, color: ''};
       chartDataOBJ.id = element.CountryCode;
       chartDataOBJ.name = element.Country;
       chartDataOBJ.value = element.TotalDeaths;
@@ -98,7 +71,7 @@ export class WorldMapChartComponent implements OnInit, OnChanges, DoCheck {
       this.TotalDeaths.push(chartDataOBJ);
     });
     this.covidData.Countries.forEach(element => {
-      let chartDataOBJ: chartData = { id: '', name: '', value: 0, color: '' };
+      let chartDataOBJ:chartData = {  id: '', name: '', value: 0, color: ''};
       chartDataOBJ.id = element.CountryCode;
       chartDataOBJ.name = element.Country;
       chartDataOBJ.value = element.TotalRecovered;
@@ -106,7 +79,7 @@ export class WorldMapChartComponent implements OnInit, OnChanges, DoCheck {
       this.TotalRecovered.push(chartDataOBJ);
     });
     this.activeChartData = this.TotalConfirmed;
-    this.ngAfterViewInit();
+    this.AfterView();
   }
 
   onClick(cases) {
@@ -126,44 +99,41 @@ export class WorldMapChartComponent implements OnInit, OnChanges, DoCheck {
       default:
         this.activeChartData = this.TotalConfirmed;
     }
-    this.ngAfterViewInit();
+    this.AfterView();
   }
 
-  ngAfterViewInit() {
+  AfterView() {
     this.zone.runOutsideAngular(() => {
-
       let chart = am4core.create("chartdiv", am4maps.MapChart);
 
-      chart.svgContainer.resizeSensor.reset();
       // let title = chart.titles.create();
       // title.text = "[bold font-size: 20]Population of the World in 2011[/]\nsource: Gapminder";
       // title.textAlign = "middle";
-
+      
       chart.geodata = am4geodata_worldLow;
 
-
       chart.projection = new am4maps.projections.Miller();
-
+ 
       let polygonSeries = chart.series.push(new am4maps.MapPolygonSeries());
       polygonSeries.exclude = ["AQ"];
       polygonSeries.useGeodata = true;
       polygonSeries.nonScalingStroke = true;
       polygonSeries.strokeWidth = 0.5;
       polygonSeries.calculateVisualCenter = true;
-
+      
       let imageSeries = chart.series.push(new am4maps.MapImageSeries());
       imageSeries.data = this.activeChartData;
       imageSeries.dataFields.value = "value";
-
+      
       let imageTemplate = imageSeries.mapImages.template;
       imageTemplate.nonScaling = true
-
+      
       let circle = imageTemplate.createChild(am4core.Circle);
       circle.fillOpacity = 0.5;
       circle.propertyFields.fill = "color";
       circle.tooltipText = "{name}: [bold]{value}[/]";
-
-
+      
+      
       imageSeries.heatRules.push({
         "target": circle,
         "property": "radius",
@@ -171,22 +141,22 @@ export class WorldMapChartComponent implements OnInit, OnChanges, DoCheck {
         "max": 30,
         "dataField": "value"
       })
-
-      imageTemplate.adapter.add("latitude", function (latitude, target) {
+      
+      imageTemplate.adapter.add("latitude", function(latitude, target) {
         let polygon = polygonSeries.getPolygonById(target.dataItem.dataContext['id']);
-        if (polygon) {
+        if(polygon){
           return polygon.visualLatitude;
-        }
-        return latitude;
+         }
+         return latitude;
       })
-
-      imageTemplate.adapter.add("longitude", function (longitude, target) {
+      
+      imageTemplate.adapter.add("longitude", function(longitude, target) {
         let polygon = polygonSeries.getPolygonById(target.dataItem.dataContext['id']);
-        if (polygon) {
+        if(polygon){
           return polygon.visualLongitude;
-        }
-        return longitude;
-      })
+         }
+         return longitude;
+      })   
     });
   }
 
