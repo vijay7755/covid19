@@ -22,7 +22,6 @@ export class DashboardService {
   constructor() { }
 
   setCovid19Summary(covid19Data: Covid19Data) {
-    console.log("in setting value inside dashboard service")
     this.covid19Summary = covid19Data;
   }
 

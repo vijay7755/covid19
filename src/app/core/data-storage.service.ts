@@ -23,11 +23,9 @@ export class DataStorageService implements OnInit {
   
 
     covid19Summary(): Observable<Covid19Data> {
-        console.log("in datastorage service")
         return this.http.get<Covid19Data>("https://api.covid19api.com/summary")
             .pipe(
                 tap(res => {
-                    console.log("after got response from server setting vlaue to dashboard service")
                     this.dashboardService.setCovid19Summary(res)
                 })
             );
