@@ -31,7 +31,7 @@ export class DataStorageService implements OnInit {
             );
     }
     CountryTotalTimeline(): Observable<CountryTotalTimeline[]> {
-        return this.http.get<CountryTotalTimeline[]>("https://api.coronatracker.com/v3/analytics/trend/country?countryCode=" + this.countryCode + "&startDate=2020-03-01&endDate=2020-06-29")
+        return this.http.get<CountryTotalTimeline[]>("https://api.coronatracker.com/v5/analytics/trend/country?countryCode=" + this.countryCode + "&startDate=2020-03-01&endDate=2020-06-29")
             .pipe(
                 tap(res => {
                     this.dashboardService.setCountryTotalTimeline(res)
@@ -39,7 +39,7 @@ export class DataStorageService implements OnInit {
             );
     }
     CountryDailyTimeline(): Observable<CountryDailyTimeline[]> {
-        return this.http.get<CountryDailyTimeline[]>("https://api.coronatracker.com/v3/analytics/newcases/country?countryCode=" + this.countryCode + "&startDate=2020-04-01&endDate=2020-06-29")
+        return this.http.get<CountryDailyTimeline[]>("https://api.coronatracker.com/v5/analytics/newcases/country?countryCode=" + this.countryCode + "&startDate=2020-04-01&endDate=2020-06-29")
             .pipe(
                 tap(res => {
                     this.dashboardService.setCountryDailyTimeline(res)
